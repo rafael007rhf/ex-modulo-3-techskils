@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm run check:env -- examples/env/development.env.example
+
+      - name: Validar configuração com env-schema
+        run: npm run demo:env-schema
+        env:
+          NODE_ENV: development
+          PORT: 3000
+          DB_HOST: localhost
+          API_KEY: chave-ficticia-ci
+          PAYMENT_URL: https://sandbox.pagamento.exemplo
+          LOG_PATH: ./logs/development.log
+          LOG_LEVEL: debug
+
+      - name: Demonstrar configuração congelada
+        run: npm run demo:freeze
+        env:
+          NODE_ENV: development
+          PORT: 3000
+          DB_HOST: localhost
+          API_KEY: chave-ficticia-ci
+          PAYMENT_URL: https://sandbox.pagamento.exemplo
+          LOG_PATH: ./logs/development.log
+          LOG_LEVEL: debug

@@ -1,0 +1,35 @@
+{
+  "name": "ex-modulo-3-techskils",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Exercícios de variáveis de ambiente, configuração e segurança em Node.js e TypeScript.",
+  "main": "dist/app.js",
+  "scripts": {
+    "prestart:dev": "ts-node scripts/check-env.ts .env.dev",
+    "start:dev": "cross-env NODE_ENV=development ts-node src/app.ts",
+    "prestart:prod": "ts-node scripts/check-env.ts .env.prod",
+    "start:prod": "cross-env NODE_ENV=production ts-node src/app.ts",
+    "start": "npm run start:prod",
+    "check:env": "ts-node scripts/check-env.ts",
+    "demo:freeze": "cross-env NODE_ENV=development ts-node scripts/demo-freeze.ts",
+    "demo:env-schema": "cross-env NODE_ENV=development ts-node scripts/demo-env-schema.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "dotenv-expand": "^11.0.7",
+    "env-schema": "^6.0.1",
+    "express": "^5.1.0",
+    "joi": "^17.13.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.0",
+    "cross-env": "^7.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}

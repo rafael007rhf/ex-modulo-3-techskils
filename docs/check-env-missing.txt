@@ -1,0 +1,6 @@
+$ npx ts-node scripts/check-env.ts .env.dev
+Configuração incompleta em .env.dev.
+Variáveis ausentes: PAYMENT_URL
+
+Observação: este arquivo registra a saída esperada do cenário didático em que
+PAYMENT_URL é removida de .env.dev. Nenhum valor de segredo é exibido.
