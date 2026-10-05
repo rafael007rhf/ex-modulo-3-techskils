@@ -61,10 +61,7 @@ function loadEnvironmentFile(environment: AppEnvironment): string | null {
     );
   }
 
-  dotenvExpand.expand({
-    parsed: loaded.parsed,
-    processEnv: process.env,
-  });
+  dotenvExpand.expand(loaded);
 
   return candidate.name;
 }
